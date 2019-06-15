@@ -1,8 +1,5 @@
 #include "sd.H"
 // action methods (rm, clear, ...)
-//
-const int NCELLS = 81;
-const int NPM = 9;
 
 void Sp::rm_row(const int ipos, const int jpos)
 {
@@ -66,31 +63,6 @@ void Sp::rm_pin_blk(const int cell, const int mark)
     if ( icell.get_block() == vc[cell].get_block() )
       icell.rm_cmark(mark);
 }
-
-
-/*  RMM remove later (dont think its needed)
-void Sp::rm_allpmarks(const int cell, const int num)
-{
-  // rm all pmarks in a given cell
-  for(int i = 1; i < 10; i++)
-    rm_pmark(cell, i);
-    //if(i != num)
-}
-
-void Sp::rm_pmark(const int cell, const int num)
-{
-  // remove pencil mark [num] for cell i, j
-  vector<int>::iterator it;
-
-  it = find(pv[cell].begin(), pv[cell].end(), num);
-  if(it != pv[cell].end()){
-    //cout << "erasing pmark ["<< num << "] for cell["<< cell <<"]\n";
-    pv[cell].erase(it);
-  }
-}
-*/
-
-
 
 void Sp::clear_row_pair(const int cell0, const int cell1)
 {
@@ -191,3 +163,25 @@ void Sp::wipe_row_but_spare_cells(const int row, const int mark, vector<int> sc)
     }
   }
 }
+
+/*  RMM remove later (dont think its needed)
+void Sp::rm_allpmarks(const int cell, const int num)
+{
+  // rm all pmarks in a given cell
+  for(int i = 1; i < 10; i++)
+    rm_pmark(cell, i);
+    //if(i != num)
+}
+
+void Sp::rm_pmark(const int cell, const int num)
+{
+  // remove pencil mark [num] for cell i, j
+  vector<int>::iterator it;
+
+  it = find(pv[cell].begin(), pv[cell].end(), num);
+  if(it != pv[cell].end()){
+    //cout << "erasing pmark ["<< num << "] for cell["<< cell <<"]\n";
+    pv[cell].erase(it);
+  }
+}
+*/

@@ -1,8 +1,6 @@
 #include "sd.H"
 // checking methods
 
-const int NCELLS = 81;
-const int NPM = 9;
 
 bool isOne(int i) {return ((i == 1) ? true : false);}
 
@@ -72,15 +70,19 @@ bool Sp::chk4_1pmark()
 {
   bool isfound = false;
 
-  for(int icell = 0; icell < NCELLS; icell++)
+  for(Cell& icell : vc)
   {
-    if(vc[icell].get_mark_cnt() == 1) // only 1 value it could be
+    if(icell.get_mark_cnt() == 1) // only 1 value it could be
     {
-      int row   = vc[icell].get_row();
-      int col   = vc[icell].get_col();
-      int value = vc[icell].get_last_mark();
-      cout << "[" << row << "," << col << "] has only ["<< value <<"]\n";
-      vc[icell].set_value(value);
+      int row   = icell.get_row();
+      int col   = icell.get_col();
+      int value = icell.get_last_mark();
+      cout << "[" << row
+           << "," << col
+           << "] gets value = ["
+           << value
+           <<"]\n";
+      icell.set_value(value);
       puzzle[row][col] = value;
       isfound = true;
     }
@@ -105,7 +107,7 @@ bool Sp::chk4_1pinBlk()
       get_sb_cells(i,j,sbc); // put subblock-cells in sbc
       //print_sb(i,j);
 
-      for(int im = 1; im <= NPM ; im++)     // loop over: marks
+      for(int im = 1; im <= 9 ; im++)     // loop over: marks
         for(int jc = 0; jc < sbc.size(); jc++) // loop over: cells
           if(cell_has_mark(jc, im))
             smc[im].push_back(jc); //put cell in smc vector
@@ -310,8 +312,8 @@ void Sp::update_mcv()
   for(auto mark : mcv)
       mark.clear();
 
-  for(int im = 1; im <= NPM ; im++)     // loop over: marks
-    for(int jc = 0; jc < NCELLS ; jc++) // loop over: cells
+  for(int im = 1; im <= 9 ; im++)     // loop over: marks
+    for(int jc = 0; jc < mcv.size() ; jc++) // loop over: cells
       if(cell_has_mark(jc, im))
         mcv[im].push_back(jc); //put cell in mcv
 }

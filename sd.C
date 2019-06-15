@@ -1,6 +1,4 @@
 #include "sd.H"
-const int NCELLS = 81;
-const int NPM = 9;
 
 Sp::Sp()
 {
@@ -13,18 +11,18 @@ Sp::Sp()
     for(int j = 0; j < 9; j++)
       opt1[i][j] = 1;
 
-  for(int i = 0; i < NCELLS; i++)
+  for(int i = 0; i < 81; i++)
     pv.push_back({1,2,3,4,5,6,7,8,9});
 
   mcv.resize(10);
 
   //for(int i = 0; i < 10; i++)
-  //  for(int j = 0; j < NCELLS; j++)
+  //  for(int j = 0; j < 81; j++)
   //    mcv[i].push_back(j);
 
   // initialize Cells
-  for(int i = 0; i < NPM; i++)
-    for(int j = 0; j < NPM; j++)
+  for(int i = 0; i < 9; i++)
+    for(int j = 0; j < 9; j++)
     {
       Cell cn(i,j);
       vc.push_back(cn);
@@ -95,7 +93,7 @@ bool Sp::is_mark_on_1blk_row()
           int row = icell / 9;
           int col = icell % 9;
           // loop over: pencil marks
-          for(int k = 1; k <= NPM; k++)
+          for(int k = 1; k <= 9; k++)
           {
             for(int pm : pv[icell])
             {

@@ -1,9 +1,6 @@
 #include "sd.H"
 // reporting methods (print xyz)
 
-const int NCELLS = 81;
-const int NPM = 9;
-
 void Sp::print_puzzle()
 {
   //print puzzle[i][j]
@@ -35,7 +32,7 @@ void Sp::print_2Dmarks()
   cout << "MKs 0 1 2   3 4 5   6 7 8"   << endl;
   cout << "  +-------+-------+-------+" << endl;
   // loop over cells
-  for(int i = 0; i < NCELLS; i++){
+  for(int i = 0; i < vc.size(); i++){
     if((i)%9 == 0)
       cout << i/9 << " " ;
 
@@ -106,7 +103,7 @@ void Sp::print_mcv_vals()
 void Sp::print_cell_marks()
 {
   //print pencil vector values for each cell
-  for(int icell = 0; icell < NCELLS; icell++)
+  for(int icell = 0; icell < vc.size(); icell++)
   {
     //int row = icell / 9;
     //int col = icell % 9;

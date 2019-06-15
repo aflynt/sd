@@ -7,9 +7,6 @@ using std::cout;
 using std::endl;
 using std::vector;
 
-const int NCELLS = 81;
-const int NPM = 9;
-
 Cell::Cell(const int r,const int c)
 {
   cell_num = r * 9 + c;
@@ -27,7 +24,7 @@ Cell::Cell(const int r,const int c)
 
   value = 0;
 
-  for(int i = 0; i < NPM; i++)
+  for(int i = 0; i < 9; i++)
     mark.push_back(i+1);
 }
 
@@ -48,7 +45,7 @@ Cell::Cell(const int cn)
 
   value = 0;
 
-  for(int i = 0; i < NPM; i++)
+  for(int i = 0; i < 9; i++)
     mark.push_back(i+1);
 }
 
