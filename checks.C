@@ -201,7 +201,6 @@ bool Sp::chk4_2pinBlk()
 
           if(vc[icell].get_mark_cnt() == 2) // store pairs
           {
-            //nv.push_back(pv[icell]);  //get all marks from icell
             nv.push_back(vc[icell].get_marks());  //get all marks from icell
             cellhit.push_back(icell);              // record [icell] as a cell hit
           }
