@@ -11,6 +11,10 @@
 #include "cell.H"
 using namespace std;
 
+//To do
+  // 1 remove find block function
+  // 2 remove pv vector<vector<int>>
+  // 3 where do i use the wipe_rc_but_spare_cells() ??
 
 class Sp
 {

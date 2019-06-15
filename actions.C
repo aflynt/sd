@@ -117,56 +117,38 @@ void Sp::clear_row_pair(const int cell0, const int cell1)
 void Sp::clear_col_pair(const int cell0, const int cell1)
 {
   cout << "clearing col pair\n";
-  // rm pencil marks [mark] from row sharing [cell]
-  const int m1 = pv[cell0][0];
-  const int m2 = pv[cell0][1];
-  const int cell_col  = cell0 % 9;
-
-  for(int i = 0; i < pv.size(); i++)
-  {
-    if(i == cell0 || i == cell1) //skip cell pair
-      continue;
-    int pv_col = i % 9;
-    if( pv_col == cell_col )
+  // rm pencil marks [mark] from col sharing [cell0 && cell1]
+  const int m1 = vc[cell0].get_mark(0);
+  const int m2 = vc[cell0].get_mark(1);
+  //
+  // loop over all cells
+  for(Cell& icell : vc)
+    if ( icell.get_col()      == vc[cell0].get_col() &&
+         icell.get_cell_num() != cell0               &&
+         icell.get_cell_num() != cell1  )
     {
-      vc[i].rm_cmark(m1);
-      vc[i].rm_cmark(m2);
-
+      icell.rm_cmark(m1);
+      icell.rm_cmark(m2);
     }
-  }
 }
 
 void Sp::clear_blk_pair(const int cell0, const int cell1)
 {
-  // rm pencil marks [m12] from block sharing [cell]
-  //
+  // rm pencil marks [m12] from block sharing [cell0 & cell1]
   cout << "clearing block pair\n";
-  const int m1 = pv[cell0][0];
-  const int m2 = pv[cell0][1];
-
-  int block = find_block(cell0);
-
-  // get block i j
-  int bi = block / 3;
-  int bj = block % 3;
-
-  // starting corner for block
-  int is = 3*bi;
-  int js = 3*bj;
-
-  for( int i = is; i < is+3; i++)
-    for( int j = js; j < js+3; j++)
+  const int m1 = vc[cell0].get_mark(0);
+  const int m2 = vc[cell0].get_mark(1);
+  //
+  // loop over all cells
+  for(Cell& icell : vc)
+    if ( icell.get_block()    == vc[cell0].get_block() &&
+         icell.get_cell_num() != cell0                 &&
+         icell.get_cell_num() != cell1  )
     {
-      int pvcell = 9*i + j;
-      if(pvcell != cell0 && pvcell != cell1)
-      {
-        vc[pvcell].rm_cmark(m1);
-        vc[pvcell].rm_cmark(m2);
-      }
+      icell.rm_cmark(m1);
+      icell.rm_cmark(m2);
     }
 }
-
-
 
 void Sp::wipe_col_but_spare_cells(const int col, const int mark, vector<int> sc)
 {
