@@ -177,8 +177,8 @@ bool Sp::chk4_1inBlk(const int num)
 bool Sp::chk4_2pinBlk()
 {
   // check for 2 pencil marks in a cell from block
-  vector<int> cellhit;
-  vector<vector<int> > nv;
+  vector<int> cellhit;     // record cell numbers that have only 2 marks
+  vector<vector<int> > nv; // number vector of cells to look at?
   bool isUpdated = false;
 
   // check block rows
@@ -191,14 +191,17 @@ bool Sp::chk4_2pinBlk()
       nv.clear();
       int is = 3*bi;
       int js = 3*bj;
+      // loop through block's cells
       for(int i = is; i < is+3; i++)
         for(int j = js; j < js+3; j++)
         {
           int icell = i*9 + j;
-          if(pv[icell].size() == 2) // store pairs
+
+          if(vc[icell].get_mark_cnt() == 2) // store pairs
           {
-            nv.push_back(pv[icell]);
-            cellhit.push_back(icell);
+            //nv.push_back(pv[icell]);  //get all marks from icell
+            nv.push_back(vc[icell].get_marks());  //get all marks from icell
+            cellhit.push_back(icell);              // record [icell] as a cell hit
           }
         }
 
@@ -211,10 +214,10 @@ bool Sp::chk4_2pinBlk()
           if(is_pair_match(c0, c1))
           {
             isUpdated = true;
-            int row0 = c0 / 9;
-            int row1 = c1 / 9;
-            int col0 = c0 % 9;
-            int col1 = c1 % 9;
+            int row0 = vc[c0].get_row();
+            int row1 = vc[c1].get_row();
+            int col0 = vc[c0].get_col();
+            int col1 = vc[c1].get_col();
 
             if(row0 == row1)
               clear_row_pair(c0, c1);

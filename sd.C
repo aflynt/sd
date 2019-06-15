@@ -1,5 +1,6 @@
 #include "sd.H"
-
+const int NCELLS = 81;
+const int NPM = 9;
 
 Sp::Sp()
 {
@@ -64,7 +65,6 @@ void Sp::read_puzzle(ifstream& ifs)
     ii++;
   }
 }
-
 
 
 // dev zone

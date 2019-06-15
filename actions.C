@@ -96,21 +96,22 @@ void Sp::clear_row_pair(const int cell0, const int cell1)
 {
   cout << "clearing row pair\n";
   // rm pencil marks [mark] from row sharing [cell]
-  const int m1 = pv[cell0][0];
-  const int m2 = pv[cell0][1];
-  const int cell_row  = cell0 / 9;
+  // already determined that there are only 2 marks in both cells
+  //const int m1 = vc[cell0].get_mark(0);
+  //const int m2 = vc[cell1].get_mark(1);
 
-  for(int i = 0; i < pv.size(); i++)
-  {
-    int pv_row = i / 9;
-    if( pv_row == cell_row && 
-        i != cell0 &&
-        i != cell1)//skip cell pair
+  const int m1 = vc[cell0].get_mark(0);
+  const int m2 = vc[cell0].get_mark(1);
+
+  // loop over all cells
+  for(Cell& icell : vc)
+    if ( icell.get_row()      == vc[cell0].get_row() &&
+         icell.get_cell_num() != cell0               &&
+         icell.get_cell_num() != cell1  )
     {
-      vc[i].rm_cmark(m1);
-      vc[i].rm_cmark(m2);
+      icell.rm_cmark(m1);
+      icell.rm_cmark(m2);
     }
-  }
 }
 
 void Sp::clear_col_pair(const int cell0, const int cell1)
