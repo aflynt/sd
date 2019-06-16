@@ -85,7 +85,6 @@ class Sp
   private:
     int puzzle[9][9];
     int opt1[9][9];          //options 2D array
-    vector<vector<int> > mcv; //mcv[mark] = [cell...] vector
     vector<Cell> vc;
 };
 

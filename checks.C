@@ -306,13 +306,3 @@ bool Sp::process_smc(vector<vector<int> > &smc)
   return flag;
 }
 
-void Sp::update_mcv()
-{
-  for(auto mark : mcv)
-      mark.clear();
-
-  for(int im = 1; im <= 9 ; im++)     // loop over: marks
-    for(int jc = 0; jc < mcv.size() ; jc++) // loop over: cells
-      if(cell_has_mark(jc, im))
-        mcv[im].push_back(jc); //put cell in mcv
-}

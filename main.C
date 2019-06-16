@@ -62,7 +62,6 @@ int main(int argc, char * argv[])
   // Final Actions
   a.print_puzzle();
   //a.print_cell_marks();
-  //a.print_mcv_vals();
 
 
   return 0;

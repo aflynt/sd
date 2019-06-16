@@ -11,9 +11,6 @@ Sp::Sp()
     for(int j = 0; j < 9; j++)
       opt1[i][j] = 1;
 
-  mcv.resize(10);
-
-
   // initialize Cells
   for(int i = 0; i < 9; i++)
     for(int j = 0; j < 9; j++)

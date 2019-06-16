@@ -80,25 +80,6 @@ void Sp::print_options()
    cout << "  +-------+-------+-------+" << endl;
 }
 
-void Sp::print_mcv_vals()
-{
-  // print mark cell values
-  // mark[1-9] has jcells
-  update_mcv();
-  for(int im = 1; im < mcv.size(); im++)
-  {
-    cout << "mark[" << im << "]: ";
-    //for(int icell : mcv[im])
-    for(int jc = 0; jc < mcv[im].size(); jc++)
-    {
-      int icell = mcv[im][jc];
-      int row = icell / 9;
-      int col = icell % 9;
-      cout << " " <<  row  << col ;
-    }
-    cout << endl;
-  }
-}
 
 void Sp::print_cell_marks()
 {
