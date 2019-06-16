@@ -20,7 +20,7 @@ ifeq ($(COMPILER),gnu)
 endif
 
 HEADERS = sd.H cell.H
-SRCS = main.C sd.C cell.C reports.C searches.C gets.C checks.C actions.C
+SRCS = main.C sd.C cell.C reports.C searches.C gets.C checks.C actions.C dev.C
 OBJECTS = $(SRCS:.C=.o)
 DISTFILES = $(SRCS) $(HEADERS) Makefile ifile.dat
 
