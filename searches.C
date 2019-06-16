@@ -1,36 +1,6 @@
 #include "sd.H"
 // searching methods
 
-int Sp::find_block(const int cell)
-{
-  int crow = cell / 9;
-  int ccol = cell % 9;
-
-  int bi = 0;
-  int bj = 0;
-
-  if (crow < 3)
-    bi = 0;
-  else if (crow < 6)
-    bi = 1;
-  else
-    bi = 2;
-
-  if (ccol < 3)
-    bj = 0;
-  else if (ccol < 6)
-    bj = 1;
-  else
-    bj = 2;
-
-  int block = 3*bi + bj;
-
-  return block;
-  //cout << crow << " ";
-  //cout << ccol << " ";
-  //cout << block << "\n";
-}
-
 bool Sp::num_in_row(const int num, const int row)
 {
   for(int j = 0; j < 9; j++)

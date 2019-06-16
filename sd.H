@@ -12,7 +12,6 @@
 using namespace std;
 
 //To do
-  // 1 remove find block function
   // 2 remove pv vector<vector<int>>
   // 3 where do i use the wipe_rc_but_spare_cells() ??
   // 4 rm globals
@@ -32,7 +31,6 @@ class Sp
     void print_sb(const int sbi, const int sbj);
 
     // searches
-    int  find_block(const int cell);
     bool num_in_row(const int num, const int row);
     bool num_in_col(const int num, const int col);
 
