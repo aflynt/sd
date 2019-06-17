@@ -26,6 +26,7 @@ int main(int argc, char * argv[])
     cout << "=================\n";
 
 #if 1
+    vector<Cell> subvec;
     int rr=0, cc=0;
     cout << "pick a cell: (r,c)\n";
     while ((cin >> rr >> cc) && rr > -1)
@@ -33,30 +34,17 @@ int main(int argc, char * argv[])
       //Cell cn(rr,cc);
       int cell = rr * 9 + cc;
       Cell cn = a.get_cell(cell);
-      //Cell* cp = &cn;
-      //cp->print_values();
-      cn.print_values();
-      Cell cb = cn;
+      //cc.print_values();
 
-      cout << "c"
-           << cn.get_cell_num()
-           << " < c"
-           << cb.get_cell_num()
-           << "?[" << (cn < cb) << "]\n";
-      cb = a.get_cell(cell+1);
-      cout << "c"
-           << cn.get_cell_num()
-           << " < c"
-           << cb.get_cell_num()
-           << "?[" << (cn < cb) << "]\n";
-
-      //vector<int> imarks = cn.get_marks();
-      //cout << "imarks:";
-      //for (int im : imarks)
-      //  cout << " " << im;
-      //cout << endl;
+      subvec.push_back(cn);
     }
 #endif
+    std::sort(subvec.begin(), subvec.end());
+    auto it = std::unique(subvec.begin(), subvec.end());
+    subvec.resize(std::distance(subvec.begin(), it));
+    cout << "vector contains: \n";
+    for( auto& icell : subvec)
+      icell.print_values();
 
     a.print_puzzle();
     a.get_options(nc);
@@ -80,3 +68,29 @@ int main(int argc, char * argv[])
 
   return 0;
 }
+      //Cell* cp = &cn;
+      //cp->print_values();
+      //Cell cb = cn;
+      //Cell cc;
+      //cc = cb;
+      //cn.print_values();
+      //cb.print_values();
+
+      // testing for less than
+      //cout << "c"
+      //     << cn.get_cell_num()
+      //     << " <= c"
+      //     << cb.get_cell_num()
+      //     << "?[" << (cn <= cb) << "]\n";
+      //cb = a.get_cell(cell-1);
+      //cout << "c"
+      //     << cn.get_cell_num()
+      //     << " <= c"
+      //     << cb.get_cell_num()
+      //     << "?[" << (cn <= cb) << "]\n";
+
+      //vector<int> imarks = cn.get_marks();
+      //cout << "imarks:";
+      //for (int im : imarks)
+      //  cout << " " << im;
+      //cout << endl;

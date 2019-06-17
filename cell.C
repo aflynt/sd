@@ -1,4 +1,5 @@
 #include <iostream> //std::cout
+#include <iomanip>  //std::setw
 #include <vector>
 #include <algorithm>
 #include "cell.H"
@@ -6,6 +7,7 @@
 using std::cout;
 using std::endl;
 using std::vector;
+using std::setw;
 
 // ctor given row and column
 Cell::Cell(const int r,const int c)
@@ -96,13 +98,11 @@ void Cell::set_value(const int n)
 
 void Cell::print_values()
 {
-  cout << "cell = "   << cell_num;
-  cout << " RC = "    << row << col;
-  cout << " block = " << block;
-  cout << " value = " << value;
-  cout << endl;
-
-  cout << "marks:";
+  cout << "cell = "   << setw(2) << cell_num;
+  cout << " RC = "    <<            row << col;
+  cout << " block = " << setw(2) << block;
+  cout << " value = " << setw(2) << value;
+  cout << " marks:";
   for(int mi : mark)
     cout << " " << mi ;
   cout << endl;
