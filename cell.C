@@ -7,6 +7,7 @@ using std::cout;
 using std::endl;
 using std::vector;
 
+// ctor given row and column
 Cell::Cell(const int r,const int c)
 {
   cell_num = r * 9 + c;
@@ -28,6 +29,43 @@ Cell::Cell(const int r,const int c)
     mark.push_back(i+1);
 }
 
+// default ctor
+Cell::Cell()
+{
+  cell_num = -1;  //invalid default
+  row      = -1;
+  col      = -1;
+  block    = -1;
+  value    = -1;
+
+  for(int i = 0; i < 9; i++)
+    mark.push_back(i+1);
+}
+
+// copy ctor
+Cell::Cell(const Cell& x)
+{
+  cell_num = x.cell_num;
+  row      = x.row;
+  col      = x.col;
+  block    = x.block;
+  value    = x.value;
+  mark     = x.mark;
+}
+
+// copy assign
+Cell& Cell::operator=(const Cell& x)
+{
+  cell_num = x.cell_num;
+  row      = x.row;
+  col      = x.col;
+  block    = x.block;
+  value    = x.value;
+  mark     = x.mark;
+  return *this;
+}
+
+// ctor given cell num
 Cell::Cell(const int cn)
 {
   cell_num = cn;
