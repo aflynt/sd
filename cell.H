@@ -51,10 +51,11 @@ class Cell
     int  get_block() const { return block; }
     int  get_cell_num() const { return cell_num; }
     int  get_mark_cnt()  const {return mark.size(); }
-    int  get_mark(const int n) const  {return mark[n]; }
+    int  get_mark(const int n) const  { if(mark.size() > n ) return mark[n]; else return 0; }
     int  get_last_mark()  const {return mark.back(); }
     std::vector<int> get_marks() const { return mark;}
     void rm_cmark(const int num);
+    bool has_mark(const int mx);
 
     void print_values();
 

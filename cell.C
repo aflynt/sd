@@ -131,14 +131,26 @@ void Cell::print_values()
   cout << endl;
 }
 
-void Cell::rm_cmark(const int num)
+bool Cell::has_mark(const int mx)
 {
-  // remove pencil mark [num] for cell i, j
+  // check if cell has pencil mark [mx]
   vector<int>::iterator it;
 
-  it = find(mark.begin(), mark.end(), num);
+  it = find(mark.begin(), mark.end(), mx);
+  if(it != mark.end())
+    return true;
+  else
+    return false;
+}
+
+void Cell::rm_cmark(const int mx)
+{
+  // remove pencil mark [mx] for cell i, j
+  vector<int>::iterator it;
+
+  it = find(mark.begin(), mark.end(), mx);
   if(it != mark.end()){
-    //cout << "erasing pmark ["<< num << "] for cell["<< cell_num <<"]\n";
+    //cout << "erasing pmark ["<< mx << "] for cell["<< cell_num <<"]\n";
     mark.erase(it);
   }
 }

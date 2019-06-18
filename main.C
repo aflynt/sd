@@ -19,8 +19,8 @@ int main(int argc, char * argv[])
   cout << "give a num [1-9] (or <= 0 to quit)\n";
 
   int nc = 1;
-  //for(int nc = 1; nc < 10; nc++)
-  while ((cin >> nc) && nc > 0)
+  for(int nc = 1; nc < 10; nc++)
+  //while ((cin >> nc) && nc > 0)
   {
     cout << "=== Looking for "<< nc << "\n";
     cout << "=================\n";
@@ -57,7 +57,7 @@ int main(int argc, char * argv[])
 
   // Final Actions
   a.print_puzzle();
-  //a.print_cell_marks();
+  a.print_cell_marks();
 
 
   return 0;

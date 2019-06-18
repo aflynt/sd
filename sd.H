@@ -63,6 +63,7 @@ class Sp
     void update_mcv();
 
     void check_houses();
+    void chk4_paired_marks();
 
     // actions
     void rm_row(const int ipos, const int jpos);
