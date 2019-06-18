@@ -24,8 +24,10 @@ int main(int argc, char * argv[])
   {
     cout << "=== Looking for "<< nc << "\n";
     cout << "=================\n";
+    a.print_puzzle();
+    a.print_2Dmarks();
 
-#if 1
+#if 0
     int rr=0, cc=0;
     cout << "pick a cell: (r,c)\n";
     while ((cin >> rr >> cc) && rr > -1)
@@ -39,10 +41,9 @@ int main(int argc, char * argv[])
     }
 #endif
 
-    a.print_puzzle();
+    a.check_houses();
     a.get_options(nc);
     a.chk_pmarks();
-    a.print_2Dmarks();
 
     if(a.chk4_1pinBlk()){ /*continue;*/; }
     if(a.chk4_2pinBlk()){ /*continue;*/; }

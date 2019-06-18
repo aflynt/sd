@@ -40,7 +40,6 @@ class Sp
     bool is_pair_match(const int c0, const int c1);
     bool cell_has_mark(const int cell, const int mark);
 
-    void find_house(const Cell& cx);
 
     // gets
     Cell get_cell(const int cnum);
@@ -62,6 +61,8 @@ class Sp
     void cross_check_num(const int n);
     bool process_smc(vector<vector<int> > &smc);
     void update_mcv();
+
+    void check_houses();
 
     // actions
     void rm_row(const int ipos, const int jpos);

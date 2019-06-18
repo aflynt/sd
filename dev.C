@@ -6,29 +6,48 @@ int check_random()
 }
 
 // dev zone
-void Sp::find_house(const Cell& cx)
+void Sp::check_houses()
 {
   // find house given cell
   // house is all cells in same block or row or col
-  vector<Cell> ch;
-
-  // build house
-  for( auto& ci : vc)
+  for( auto& cx : vc)
   {
-    if(ci == cx) continue; //skip self
-    if(ci.get_row()   == cx.get_row() ||
-       ci.get_col()   == cx.get_col() ||
-       ci.get_block() == cx.get_block() )
-      ch.push_back(ci);
+    vector<Cell> ch;
+
+    // build house
+    for( auto& ci : vc)
+    {
+      if(ci == cx) continue; //skip self
+      if(ci.get_row()   == cx.get_row() ||
+         ci.get_col()   == cx.get_col() ||
+         ci.get_block() == cx.get_block() )
+         ch.push_back(ci); //shared house
+    }
+
+
+    // sort house
+    std::sort(ch.begin(), ch.end());
+    auto it = std::unique(ch.begin(), ch.end());
+    ch.resize(std::distance(ch.begin(), it));
+
+
+    //cout << "Before: ";
+    //cx.print_values();
+    //
+    // use house
+    for( auto& icell : ch)
+    {
+      // find value that house already has
+      int hval = icell.get_value();
+
+      // remove house value from target cell's marks
+      cx.rm_cmark(hval);
+    }
+    // check what target cell looks like now
+    //
+    //cout << "After : ";
+    //cx.print_values();
   }
-
-
-  std::sort(ch.begin(), ch.end());
-  auto it = std::unique(ch.begin(), ch.end());
-  ch.resize(std::distance(ch.begin(), it));
-  cout << "house contains: \n";
-  for( auto& icell : ch)
-    icell.print_values();
 }
 
 
