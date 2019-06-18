@@ -102,7 +102,6 @@ Cell& Cell::operator=(const Cell& x)
   return *this;
 }
 
-
 void Cell::set_value(const int n)
 {
   // valid values for n are 1-9 for numbers and 0 if not found

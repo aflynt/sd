@@ -12,9 +12,9 @@
 using namespace std;
 
 //To do
-  // 2 remove pv vector<vector<int>>
-  // 3 where do i use the wipe_rc_but_spare_cells() ??
-  // 4 rm globals
+// [1] 2 remove pv vector<vector<int>>
+// [ ] 3 where do i use the wipe_rc_but_spare_cells() ??
+// [ ] 4 rm globals
 
 class Sp
 {
@@ -39,6 +39,8 @@ class Sp
 
     bool is_pair_match(const int c0, const int c1);
     bool cell_has_mark(const int cell, const int mark);
+
+    void find_house(const Cell& cx);
 
     // gets
     Cell get_cell(const int cnum);

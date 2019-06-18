@@ -6,6 +6,34 @@ int check_random()
 }
 
 // dev zone
+void Sp::find_house(const Cell& cx)
+{
+  // find house given cell
+  // house is all cells in same block or row or col
+  vector<Cell> ch;
+
+  // build house
+  for( auto& ci : vc)
+  {
+    if(ci == cx) continue; //skip self
+    if(ci.get_row()   == cx.get_row() ||
+       ci.get_col()   == cx.get_col() ||
+       ci.get_block() == cx.get_block() )
+      ch.push_back(ci);
+  }
+
+
+  std::sort(ch.begin(), ch.end());
+  auto it = std::unique(ch.begin(), ch.end());
+  ch.resize(std::distance(ch.begin(), it));
+  cout << "house contains: \n";
+  for( auto& icell : ch)
+    icell.print_values();
+}
+
+
+
+
 #if 0
 bool Sp::is_mark_on_1blk_row()
 {

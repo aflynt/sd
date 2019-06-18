@@ -26,7 +26,6 @@ int main(int argc, char * argv[])
     cout << "=================\n";
 
 #if 1
-    vector<Cell> subvec;
     int rr=0, cc=0;
     cout << "pick a cell: (r,c)\n";
     while ((cin >> rr >> cc) && rr > -1)
@@ -34,17 +33,11 @@ int main(int argc, char * argv[])
       //Cell cn(rr,cc);
       int cell = rr * 9 + cc;
       Cell cn = a.get_cell(cell);
+      a.find_house(cn);
       //cc.print_values();
 
-      subvec.push_back(cn);
     }
 #endif
-    std::sort(subvec.begin(), subvec.end());
-    auto it = std::unique(subvec.begin(), subvec.end());
-    subvec.resize(std::distance(subvec.begin(), it));
-    cout << "vector contains: \n";
-    for( auto& icell : subvec)
-      icell.print_values();
 
     a.print_puzzle();
     a.get_options(nc);
