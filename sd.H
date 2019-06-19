@@ -63,7 +63,7 @@ class Sp
     void update_mcv();
 
     void check_houses();
-    void chk4_paired_marks();
+    bool chk4_paired_marks();
 
     // actions
     void rm_row(const int ipos, const int jpos);
@@ -83,6 +83,7 @@ class Sp
     void clear_row_pair(const int cell0, const int cell1);
     void clear_col_pair(const int cell0, const int cell1);
     void clear_blk_pair(const int cell0, const int cell1);
+    void cmg_mcb(const int mark, const  int col, const int block);
 
   private:
     int puzzle[9][9];

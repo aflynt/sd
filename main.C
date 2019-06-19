@@ -27,10 +27,9 @@ int main(int argc, char * argv[])
     a.print_puzzle();
     a.print_2Dmarks();
 
-    a.chk4_paired_marks();
     int bar;
-    cin >> bar;
 #if 0
+    cin >> bar;
     int rr=0, cc=0;
     cout << "pick a cell: (r,c)\n";
     while ((cin >> rr >> cc) && rr > -1)
@@ -50,6 +49,7 @@ int main(int argc, char * argv[])
 
     if(a.chk4_1pinBlk()){ /*continue;*/; }
     if(a.chk4_2pinBlk()){ /*continue;*/; }
+    if(a.chk4_paired_marks()){ nc = 0; continue; }
     if(a.chk4_1inRow(nc)){ nc = 0; continue; }
     if(a.chk4_1inCol(nc)){ nc = 0; continue; }
     if(a.chk4_1inBlk(nc)){ nc = 0; continue; }

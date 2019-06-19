@@ -46,7 +46,17 @@ void Sp::check_houses()
   }
 }
 
-void Sp::chk4_paired_marks()
+void Sp::cmg_mcb(const int mark, const int col, const int block)
+{
+  // clear mark given mark col block
+  // rm [mark] in [col]umn for blocks not in [block]
+  for( auto& ci : vc)
+    if( ci.get_col()   == col   &&
+        ci.get_block() != block )
+       ci.rm_cmark(mark);
+}
+
+bool Sp::chk4_paired_marks()
 {
   // for each block, find mark that occurs only in 1 row or 1 col
 
@@ -98,46 +108,41 @@ void Sp::chk4_paired_marks()
       auto itc = std::unique(mc[i].begin(), mc[i].end());
       mc[i].resize(std::distance(mc[i].begin(), itc));
     }
-
+    //
     // print mr set
-    for(int i = 1; i < mr.size(); i++)
+    //for(int i = 1; i < mr.size(); i++)
+    //{
+    //  if(mr[i].size() == 0) continue;
+    //  cout << "mr [" << i << "] =>";
+    //  for (auto rr : mr[i])
+    //    cout << " " << rr ;
+    //  cout << endl;
+    //}
+
+    // print mc set
+    for(int i = 1; i < mc.size(); i++)
     {
-      if(mr[i].size() == 0) continue;
-      cout << "mr [" << i << "] =>";
-      for (auto rr : mr[i])
-        cout << " " << rr ;
-      cout << endl;
+      if(     mc[i].size() == 0) continue;
+      else if(mc[i].size() == 1)
+      {
+        int hm = i;
+        int hc = mc[i][0];
+        int hb = iblock;
+        cmg_mcb(hm, hc, hb);
+        cout << "HIT on MCB= "
+             << " " << hm
+             << " " << hc
+             << " " << hb
+             << endl;
+        return true;
+      }
+      //cout << "mc [" << i << "] =>";
+      //for (auto rr : mc[i])
+      //  cout << " " << rr ;
+      //cout << endl;
     }
-    cout << endl;
   }
-
-#if 0
-  }
-    // sort house
-    std::sort(blockset.begin(), blockset.end());
-    auto it = std::unique(blockset.begin(), blockset.end());
-    blockset.resize(std::distance(blockset.begin(), it));
-
-
-    //cout << "Before: ";
-    //cx.print_values();
-    //
-    // use house
-    for( auto& icell : blockset)
-    {
-      // find value that house already has
-      int hval = icell.get_value();
-
-      // remove house value from target cell's marks
-      cx.rm_cmark(hval);
-    }
-
-   // */
-    // check what target cell looks like now
-    //
-    //cout << "After : ";
-    //cx.print_values();
-#endif
+  return false;
 }
 
 
