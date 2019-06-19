@@ -54,7 +54,7 @@ void Sp::chk4_paired_marks()
 
   for(int iblock=0; iblock < 9; iblock++) // loop over subblocks
   {
-    cout <<  "iblock = " << iblock;
+    cout <<  "iblock = " << iblock << endl;
 
     vector<Cell> blockset;
 
@@ -64,32 +64,51 @@ void Sp::chk4_paired_marks()
          blockset.push_back(ci);
 
     //build mark_in_row vector
-    vector<vector<int>> mark_in_row;
-    vector<vector<int>> mark_in_col;
-    for(int mi=0; mi < 10; mi++)
-    {
-      mark_in_row.pushback(mi);
-      mark_in_col.pushback(mi);
-    }
+    vector<vector<int>> mr;
+    vector<vector<int>> mc;
+    mr.resize(10);
+    mc.resize(10);
 
+    // build mark in row[mark][row]
+    // m[1] = 1 2 3 4 ..
+    // m[2] = 1
+    // m[3] = 1 2 3
     for(int im = 1; im < 10; im++)  //mark loop
     {
       for( auto& bci : blockset)
       {
         for(int jr = 0; jr < 9; jr++)  //row loop
           if(bci.has_mark(im) && bci.get_row() == jr)
-            mark_in_row[im].push_back(jr);
+            mr[im].push_back(jr);
 
         for(int jc = 0; jc < 9; jc++)  //col loop
           if(bci.has_mark(im) && bci.get_col() == jc)
-            mark_in_col[im].push_back(jc);
+            mc[im].push_back(jc);
       }
     }
 
-    for (auto mr : mark_in_row)
-      cout << "mr = " << mr << " with:" <<;
-      for (auto rr : mr)
-        cout << "" << rr ;
+    // find unique set of rows && cols
+    for(int i = 1; i < mr.size(); i++)
+    {
+      std::sort(mr[i].begin(), mr[i].end());
+      auto itr = std::unique(mr[i].begin(), mr[i].end());
+      mr[i].resize(std::distance(mr[i].begin(), itr));
+
+      std::sort(mc[i].begin(), mc[i].end());
+      auto itc = std::unique(mc[i].begin(), mc[i].end());
+      mc[i].resize(std::distance(mc[i].begin(), itc));
+    }
+
+    // print mr set
+    for(int i = 1; i < mr.size(); i++)
+    {
+      if(mr[i].size() == 0) continue;
+      cout << "mr [" << i << "] =>";
+      for (auto rr : mr[i])
+        cout << " " << rr ;
+      cout << endl;
+    }
+    cout << endl;
   }
 
 #if 0

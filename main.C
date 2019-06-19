@@ -27,6 +27,9 @@ int main(int argc, char * argv[])
     a.print_puzzle();
     a.print_2Dmarks();
 
+    a.chk4_paired_marks();
+    int bar;
+    cin >> bar;
 #if 0
     int rr=0, cc=0;
     cout << "pick a cell: (r,c)\n";
