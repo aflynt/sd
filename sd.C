@@ -1,12 +1,14 @@
 #include "sd.H"
 
+// default constructor
 Sp::Sp()
 {
-  // default constructor to zero
+  // Set all puzzle positions to 0. No value taken
   for(int i = 0; i < 9; i++)
     for(int j = 0; j < 9; j++)
       puzzle[i][j] = 0;
 
+  // set all options to 1. 1 == ??
   for(int i = 0; i < 9; i++)
     for(int j = 0; j < 9; j++)
       opt1[i][j] = 1;

@@ -145,6 +145,59 @@ bool Sp::chk4_paired_marks()
   return false;
 }
 
+bool Sp::isPossible(const int row, const int col, const int num)
+{
+  // cant put num in rc if it is already in row, col, block
+  Cell tcell(row,col);
+  // check row
+  for(auto& c: vc)
+    if(c.get_row()   == row ||
+       c.get_col()   == col ||
+       c.get_block() == tcell.get_block())
+    {
+      if(c.get_value() == num)
+        return false;
+    }
+  return true;
+}
+
+int minVal(const vector<Cell>& vc)
+{
+  int m = 10;
+  for(auto& c: vc){
+    int val = c.get_value();
+    if(val < m){
+      m = val;
+    }
+  }
+  return m;
+}
+
+
+int Sp::solve()
+{
+  // iterate through each cell
+  for(auto& c: vc){
+    if (c.get_value() == 0){
+      // try all the numbers
+      for(int n=1; n<10; n++){
+        // put value if possible
+        if(isPossible(c.get_row(), c.get_col(), n)){
+          c.set_value(n);
+          // solve recursively
+          int s = solve();
+
+          // didnt work. backtrack
+          if (s==1 && minVal(vc) < 1){
+            c.set_value(0);
+          }
+        }
+      }
+      return 1;
+    }
+  }
+  return 0;
+}
 
 
 #if 0

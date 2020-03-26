@@ -9,23 +9,9 @@ using std::endl;
 using std::vector;
 using std::setw;
 
-// default ctor
-Cell::Cell()
+void Cell::chelper(int cn)
 {
-  cell_num = -1;  //invalid default
-  row      = -1;
-  col      = -1;
-  block    = -1;
-  value    = -1;
-
-  for(int i = 0; i < 9; i++)
-    mark.push_back(i+1);
-}
-
-// ctor given cell num
-Cell::Cell(const int cn)
-{
-  // invariant is cell num must be >= 0 && < 81
+  // invariant is: 0 <= cn < 81 
   if(cn < 0 || cn > 80)
   {
     cell_num = -1;  //invalid default
@@ -36,8 +22,8 @@ Cell::Cell(const int cn)
   }
   else{
     cell_num = cn;
-    row = cell_num / 9;
-    col = cell_num % 9;
+    row = cn / 9;
+    col = cn % 9;
 
     int bi = row / 3;
     int bj = col / 3;
@@ -51,32 +37,24 @@ Cell::Cell(const int cn)
     mark.push_back(i+1);
 }
 
-// ctor given row and column
-Cell::Cell(const int r,const int c)
+
+// default ctor
+Cell::Cell()
 {
-  // invariant is row and cols range from 0 to 8
-  if(r < 0 || r > 8 || c < 0 || c > 8)
-  {
-    cell_num = -1;  //invalid default
-    row      = -1;
-    col      = -1;
-    block    = -1;
-    value    = -1;
-  }
-  else{
-    cell_num = r * 9 + c;
-    row = r;
-    col = c;
+  chelper(-1);
+}
 
-    int bi = row / 3;
-    int bj = col / 3;
+// ctor given cell num
+Cell::Cell(int cn) 
+{
+  chelper(cn);
+}
 
-    block = 3*bi + bj;
-    value = 0;
-  }
-
-  for(int i = 0; i < 9; i++)
-    mark.push_back(i+1);
+// ctor given row and column
+Cell::Cell(int r,int c)
+{
+  int cn = r * 9 + c;
+  chelper(cn);
 }
 
 // copy ctor

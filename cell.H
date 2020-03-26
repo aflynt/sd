@@ -9,8 +9,8 @@ class Cell
     // Semiregular:
     // constructors
     Cell();                          //default constructor
-    Cell(const int cn);              //constructor
-    Cell(const int r, const  int c); //constructor
+    Cell(int cn);              //constructor
+    Cell(int r, int c); //constructor
     Cell(const Cell& x);             //copy constructor
     ~Cell() {}                       // destructor
     Cell& operator=(const Cell& x);   // copy assign
@@ -66,6 +66,7 @@ class Cell
     int block;
     int value;
     std::vector<int> mark;
+    void chelper(int cn);
 };
 
 #endif

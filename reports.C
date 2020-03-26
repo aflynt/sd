@@ -4,7 +4,6 @@
 void Sp::print_puzzle()
 {
   //print puzzle[i][j]
-
   cout << "PUZ 0 1 2   3 4 5   6 7 8"   << endl;
   for(int i = 0; i < 9; i++)
   {
@@ -13,7 +12,8 @@ void Sp::print_puzzle()
     cout << i << " ";
     for(int j = 0; j < 9; j++)
     {
-      int val = puzzle[i][j];
+      //int val = puzzle[i][j];
+      int val = vc[i*9+j].get_value();
       if(j%3 == 0)
         cout << "| ";
       if(val == 0)

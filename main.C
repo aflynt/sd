@@ -1,7 +1,5 @@
 #include "sd.H"
 
-
-
 int main(int argc, char * argv[])
 {
   if (argc != 2){cout << "Name a file!\n";
@@ -16,7 +14,17 @@ int main(int argc, char * argv[])
   Sp a;
   a.read_puzzle(ifs);
   a.print_puzzle();
-  cout << "give a num [1-9] (or <= 0 to quit)\n";
+  a.solve();
+  a.print_puzzle();
+
+#if 0
+  cout << "pick a cell: (r,c) and num\n";
+  int rr, cc, num;
+  while ((cin >> rr >> cc >> num) && rr > -1)
+  {
+    cout << "POSSIBLE = " << a.isPossible(rr,cc,num) << endl;
+    a.print_puzzle();
+  }
 
   int nc = 1;
   for(int nc = 1; nc < 10; nc++)
@@ -27,21 +35,19 @@ int main(int argc, char * argv[])
     a.print_puzzle();
     a.print_2Dmarks();
 
-    int bar;
-    cin >> bar;
-#if 0
-    int rr=0, cc=0;
-    cout << "pick a cell: (r,c)\n";
-    while ((cin >> rr >> cc) && rr > -1)
+    //int bar;
+    //cin >> bar;
+    int rr=0, cc=0, num=1;
+    cout << "pick a cell: (r,c) and num\n";
+    while ((cin >> rr >> cc >> num) && rr > -1)
     {
       //Cell cn(rr,cc);
       int cell = rr * 9 + cc;
       Cell cn = a.get_cell(cell);
-      a.find_house(cn);
+      //a.find_house(cn);
+      cout << "POSSIBLE = " << a.isPossible(rr,cc,num) << endl;
       //cc.print_values();
-
     }
-#endif
 
     a.check_houses();
     a.get_options(nc);
@@ -57,10 +63,11 @@ int main(int argc, char * argv[])
 
     cout << "give a num [1-9] (or <= 0 to quit)\n";
   }
+#endif
 
   // Final Actions
-  a.print_puzzle();
-  a.print_cell_marks();
+  //a.print_puzzle();
+  //a.print_cell_marks();
 
 
   return 0;

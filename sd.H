@@ -11,6 +11,8 @@
 #include "cell.H"
 using namespace std;
 
+int minVal(const vector<Cell>& vc);
+
 //To do
 // [1] 2 remove pv vector<vector<int>>
 // [ ] 3 where do i use the wipe_rc_but_spare_cells() ??
@@ -19,10 +21,11 @@ using namespace std;
 class Sp
 {
   public:
-    Sp();
+    // sd.c
+    Sp(); // default ctor defined
     void read_puzzle(ifstream& ifs);
 
-    // reports
+    // reports.c
     void print_puzzle();
     void print_options();
     void print_2Dmarks();
@@ -30,7 +33,7 @@ class Sp
     void print_cell_marks();
     void print_sb(const int sbi, const int sbj);
 
-    // searches
+    // searches.c
     bool num_in_row(const int num, const int row);
     bool num_in_col(const int num, const int col);
 
@@ -41,7 +44,7 @@ class Sp
     bool cell_has_mark(const int cell, const int mark);
 
 
-    // gets
+    // gets.c
     Cell get_cell(const int cnum);
     void get_subBlock(const int sbi, const int sbj, vector<int> &vsb);
     void get_sb_cells(const int sbi, const int sbj, vector<int> &vsb);
@@ -50,7 +53,7 @@ class Sp
     void get_options(const int n);
     void reset_options();
 
-    // checks
+    // checks.c
     bool chk4_1inRow(const int num);
     bool chk4_1inCol(const int num);
     bool chk4_1inBlk(const int num);
@@ -65,7 +68,7 @@ class Sp
     void check_houses();
     bool chk4_paired_marks();
 
-    // actions
+    // actions.c
     void rm_row(const int ipos, const int jpos);
     void rm_col(const int ipos, const int jpos);
     void rm_blk(const int ipos, const int jpos);
@@ -84,6 +87,8 @@ class Sp
     void clear_col_pair(const int cell0, const int cell1);
     void clear_blk_pair(const int cell0, const int cell1);
     void cmg_mcb(const int mark, const  int col, const int block);
+    bool isPossible(const int row, const int col, const int num);
+    int solve();
 
   private:
     int puzzle[9][9];
